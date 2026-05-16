@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رادار باينانس الحامي للعملات البديلة</title>
+    <title>رادار باينانس الفوري للعملات البديلة</title>
     <style>
         :root {
             --bg-color: #0b0e11;
@@ -128,13 +128,13 @@
 <body>
 
     <header>
-        <h1>• رادار السيولة الفورية الخفيف (باينانس) •</h1>
+        <h1>• رادار باينانس الفوري للعملات البديلة •</h1>
         <p>مراقبة حية فائقة الحساسية لاصطياد بدايات حركة صعود العملات البديلة</p>
         <div class="filters-summary">
             <span class="badge">❌ مستبعد: الكبيرة (BTC, ETH, BNB)</span>
             <span class="badge">❌ مستبعد: شبه رئيسية (SOL, XRP...)</span>
             <span class="badge">❌ مستبعد: المستقرة (USDT, USDC...)</span>
-            <span class="badge">🔥 الشروط: حجم > $100K | صعود > 0.5%+</span>
+            <span class="badge">🔥 الشروط الخفيفة: حجم > $100K | صعود > 0.5%+</span>
         </div>
     </header>
 
@@ -142,7 +142,7 @@
     <div class="grid" id="token-grid"></div>
 
     <script>
-        // قائمة الحظر الصارمة لمنع تشويش العملات الكبيرة والمستقرة
+        // قائمة استبعاد العملات الكبيرة والمستقرة لمنع تشتيت الشاشة
         const BLACKLIST_BASE = [
             'BTC', 'ETH', 'BNB', 'SOL', 'XRP', 'ADA', 'DOGE', 'AVAX', 'LINK', 'DOT', 'MATIC', 'NEAR', 'LTC',
             'USDT', 'USDC', 'BUSD', 'FDUSD', 'TUSD', 'DAI', 'EUR', 'TRY', 'GBP'
@@ -153,12 +153,12 @@
         
         let activeTokens = {};
 
-        // فتح بث الـ WebSocket المباشر مع باينانس
+        // الاتصال المباشر بالبث المباشر لباينانس لحركات السوق اللحظية
         const wsUrl = "wss://stream.binance.com:9443/ws/!ticker@arr";
         const ws = new WebSocket(wsUrl);
 
         ws.onopen = () => {
-            statusDiv.innerHTML = "🟢 متصل بالبث الفوري.. الرادار حامي ويلقط أدنى حركة سيولة الآن 🚀";
+            statusDiv.innerHTML = "🟢 متصل بالبث الفوري.. الرادار شغال ويلقط أي حركة سيولة الآن 🚀";
             statusDiv.style.color = "#0ecb81";
         };
 
@@ -168,24 +168,20 @@
             data.forEach(market => {
                 const symbol = market.s;
                 
-                // التركيز الكامل على أزواج USDT
-                if (!symbol.endswith('USDT')) return;
+                // تم تعديلها هنا برمجياً لتكون التسمية صحيحة للمتصفح (endsWith) بدلاً من (endswith)
+                if (!symbol.endsWith('USDT')) return;
                 
                 const baseAsset = symbol.replace('USDT', '');
                 
-                // تطبيق فلتر الاستبعاد الفوري
+                // تطبيق فلتر الاستبعاد الفوري للعملات غير المستهدفة
                 if (BLACKLIST_BASE.includes(baseAsset)) return;
 
                 const lastPrice = parseFloat(market.c);
-                const priceChangePercent = parseFloat(market.P); // نسبة التغير
-                const quoteVolume = parseFloat(market.q); // حجم التداول بالدولار
+                const priceChangePercent = parseFloat(market.P); 
+                const quoteVolume = parseFloat(market.q); 
 
-                // 🛠️ شروط الفحص الخفيفة والسريعة الجديدة:
-                // 1. حجم التداول الإجمالي تجاوز 100,000 دولار فقط (حركة مبكرة جداً)
-                // 2. صعود إيجابي يبدأ من 0.5%+ (لقط أول موجة صعود)
-                // 3. عملة بديلة خفيفة سعرها أقل من 3 دولار
+                // الفلاتر الخفيفة لاصطياد العملات: حجم التداول فوق 100 ألف دولار، ارتفاع فوق 0.5%، وسعر أقل من 3 دولار
                 if (quoteVolume > 100000 && priceChangePercent > 0.5 && lastPrice < 3.0) {
-                    
                     activeTokens[baseAsset] = {
                         symbol: baseAsset,
                         price: lastPrice,
@@ -193,7 +189,6 @@
                         volume: quoteVolume
                     };
                 } else {
-                    // إذا نزلت العملة عن الشروط الخفيفة يتم حذف كرتها تلقائياً للحفاظ على نظافة الشاشة
                     if (activeTokens[baseAsset]) {
                         delete activeTokens[baseAsset];
                     }
@@ -204,12 +199,11 @@
         };
 
         function renderGrid() {
-            // ترتيب تلقائي من الأعلى صعوداً إلى الأقل
             const sortedTokens = Object.values(activeTokens).sort((a, b) => b.change - a.change);
             
             if (sortedTokens.length === 0) {
                 grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #848e9c; padding: 30px;">
-                    🔍 الرادار يمسح الصفقات الحية.. بانتظار تطابق الشروط الخفيفة لعرض العملات...
+                    🔍 الرادار يمسح الصفقات الحية.. بانتظار تطابق الشروط الخفيفة جداً لعرض العملات البديلة...
                 </div>`;
                 return;
             }
@@ -232,7 +226,7 @@
                         <span class="stat-value price-up">${token.change.toFixed(2)}%+</span>
                     </div>
                     <div class="stat-row">
-                        <span class="stat-label">حجم التداول اليومي:</span>
+                        <span class="stat-label">حجم التداول (24h):</span>
                         <span class="stat-value" style="color: #fff;">$${token.volume.toLocaleString(undefined, {maximumFractionDigits: 0})}</span>
                     </div>
                     <a href="https://www.binance.com/ar/trade/${token.symbol}_USDT" target="_blank" class="trade-btn">انتقل للتداول فوراً</a>
