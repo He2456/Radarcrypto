@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رادار باينانس الفوري للعملات البديلة</title>
+    <title>رادار باينانس الحامي للعملات البديلة</title>
     <style>
         :root {
             --bg-color: #0b0e11;
@@ -19,40 +19,40 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
         }
 
         header {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             background-color: var(--card-bg);
             border-radius: 10px;
             margin-bottom: 20px;
             border-bottom: 3px solid var(--accent-color);
         }
 
-        h1 { margin: 0; color: var(--accent-color); font-size: 24px; }
-        p { color: #848e9c; margin: 5px 0 0 0; }
+        h1 { margin: 0; color: var(--accent-color); font-size: 22px; }
+        p { color: #848e9c; margin: 5px 0 0 0; font-size: 14px; }
 
         .filters-summary {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 12px;
             flex-wrap: wrap;
         }
 
         .badge {
             background: #2b3139;
-            padding: 5px 10px;
+            padding: 4px 8px;
             border-radius: 5px;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 15px;
         }
 
         .card {
@@ -61,11 +61,11 @@
             padding: 15px;
             border: 1px solid var(--border-color);
             position: relative;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -74,24 +74,24 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             margin-bottom: 10px;
         }
 
-        .token-name { font-weight: bold; font-size: 20px; color: #fff; }
+        .token-name { font-weight: bold; font-size: 18px; color: #fff; }
         .binance-badge {
             background-color: #2b3139;
             color: var(--accent-color);
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: bold;
         }
 
         .stat-row {
             display: flex;
             justify-content: space-between;
-            margin: 8px 0;
+            margin: 6px 0;
             font-size: 14px;
         }
 
@@ -106,11 +106,11 @@
             background-color: var(--accent-color);
             color: #000;
             text-decoration: none;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
-            margin-top: 15px;
+            margin-top: 12px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
             transition: background 0.2s;
         }
 
@@ -118,9 +118,9 @@
 
         #status {
             text-align: center;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--accent-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: bold;
         }
     </style>
@@ -128,21 +128,21 @@
 <body>
 
     <header>
-        <h1>• رادار باينانس الفوري لعملات الانفجار والسيولة •</h1>
-        <p>مراقبة حية مباشرة عبر الـ WebSocket لاصطياد العملات البديلة لحظة ضخ السيولة</p>
+        <h1>• رادار السيولة الفورية الخفيف (باينانس) •</h1>
+        <p>مراقبة حية فائقة الحساسية لاصطياد بدايات حركة صعود العملات البديلة</p>
         <div class="filters-summary">
-            <span class="badge">❌ مستبعد: العملات الرئيسية (BTC, ETH, BNB)</span>
-            <span class="badge">❌ مستبعد: عملات شبه رئيسية (SOL, XRP, ADA...)</span>
-            <span class="badge">❌ مستبعد: العملات المستقرة (USDT, USDC...)</span>
-            <span class="badge">🔥 المستهدف: العملات البديلة ذات التغير الإيجابي السريع</span>
+            <span class="badge">❌ مستبعد: الكبيرة (BTC, ETH, BNB)</span>
+            <span class="badge">❌ مستبعد: شبه رئيسية (SOL, XRP...)</span>
+            <span class="badge">❌ مستبعد: المستقرة (USDT, USDC...)</span>
+            <span class="badge">🔥 الشروط: حجم > $100K | صعود > 0.5%+</span>
         </div>
     </header>
 
-    <div id="status">جاري الاتصال بالبث المباشر لباينانس وسحب السيولة بالملي ثانية...</div>
+    <div id="status">جاري فتح بث باينانس بالملي ثانية...</div>
     <div class="grid" id="token-grid"></div>
 
     <script>
-        // 1. قائمة الحظر الصارمة لمنع العملات الكبيرة والمستقرة تماماً
+        // قائمة الحظر الصارمة لمنع تشويش العملات الكبيرة والمستقرة
         const BLACKLIST_BASE = [
             'BTC', 'ETH', 'BNB', 'SOL', 'XRP', 'ADA', 'DOGE', 'AVAX', 'LINK', 'DOT', 'MATIC', 'NEAR', 'LTC',
             'USDT', 'USDC', 'BUSD', 'FDUSD', 'TUSD', 'DAI', 'EUR', 'TRY', 'GBP'
@@ -151,16 +151,14 @@
         const grid = document.getElementById('token-grid');
         const statusDiv = document.getElementById('status');
         
-        // ذاكرة مؤقتة لتخزين كروت العملات وتحديثها بدلاً من إعادة مسح الشاشة
         let activeTokens = {};
 
-        // 2. فتح اتصال الـ WebSocket المباشر مع سيرفر باينانس الرسمي
-        // هذا الرابط يسحب حركة تداول جميع العملات في المنصة في نفس ثانية حدوثها
+        // فتح بث الـ WebSocket المباشر مع باينانس
         const wsUrl = "wss://stream.binance.com:9443/ws/!ticker@arr";
         const ws = new WebSocket(wsUrl);
 
         ws.onopen = () => {
-            statusDiv.innerHTML = "🟢 متصل الآن ببث باينانس الفوري.. الرادار يمسح السوق بالملي ثانية 🚀";
+            statusDiv.innerHTML = "🟢 متصل بالبث الفوري.. الرادار حامي ويلقط أدنى حركة سيولة الآن 🚀";
             statusDiv.style.color = "#0ecb81";
         };
 
@@ -168,27 +166,26 @@
             const data = JSON.parse(event.data);
             
             data.forEach(market => {
-                const symbol = market.s; // مثل FLOKIUSDT
+                const symbol = market.s;
                 
-                // نراقب فقط أزواج الـ USDT لتوحيد تتبع السيولة
-                if (!symbol.endsWith('USDT')) return;
+                // التركيز الكامل على أزواج USDT
+                if (!symbol.endswith('USDT')) return;
                 
                 const baseAsset = symbol.replace('USDT', '');
                 
-                // تصفية فورية: استبعاد العملات الكبيرة والمستقرة
+                // تطبيق فلتر الاستبعاد الفوري
                 if (BLACKLIST_BASE.includes(baseAsset)) return;
 
-                const lastPrice = parseFloat(market.c); // السعر الحالي
-                const priceChangePercent = parseFloat(market.P); // نسبة التغير في 24 ساعة
-                const quoteVolume = parseFloat(market.q); // حجم السيولة المتداولة بالدولار
+                const lastPrice = parseFloat(market.c);
+                const priceChangePercent = parseFloat(market.P); // نسبة التغير
+                const quoteVolume = parseFloat(market.q); // حجم التداول بالدولار
 
-                // شروط صيد عملة الانفجار اللحظية:
-                // 1. حجم سيولة قوي (أكثر من 1.5 مليون دولار متداول لضمان وجود حيتان)
-                // 2. صعود إيجابي قوي (أعلى من 3% كبداية ترند صاعد)
-                // 3. عملات سنتية وبديلة (سعرها أقل من 1 دولار لتكون خفيفة في الانفجار)
-                if (quoteVolume > 1500000 && priceChangePercent > 3.0 && lastPrice < 1.0) {
+                // 🛠️ شروط الفحص الخفيفة والسريعة الجديدة:
+                // 1. حجم التداول الإجمالي تجاوز 100,000 دولار فقط (حركة مبكرة جداً)
+                // 2. صعود إيجابي يبدأ من 0.5%+ (لقط أول موجة صعود)
+                // 3. عملة بديلة خفيفة سعرها أقل من 3 دولار
+                if (quoteVolume > 100000 && priceChangePercent > 0.5 && lastPrice < 3.0) {
                     
-                    // إذا كانت العملة ملقوطة سابقاً، نحدث بياناتها فقط، وإذا كانت جديدة ننشئ لها كرت
                     activeTokens[baseAsset] = {
                         symbol: baseAsset,
                         price: lastPrice,
@@ -196,24 +193,23 @@
                         volume: quoteVolume
                     };
                 } else {
-                    // إذا تراجعت السيولة أو شروط الانفجار عن العملة، نحذفها من الشاشة للحفاظ على دقة الرادار
+                    // إذا نزلت العملة عن الشروط الخفيفة يتم حذف كرتها تلقائياً للحفاظ على نظافة الشاشة
                     if (activeTokens[baseAsset]) {
                         delete activeTokens[baseAsset];
                     }
                 }
             });
 
-            // تحديث الشاشة بناءً على البيانات الفورية الفعالة فقط
             renderGrid();
         };
 
         function renderGrid() {
-            // ترتيب العملات داخل الموقع تلقائياً حسب الأعلى صعوداً وحجماً للسيولة
+            // ترتيب تلقائي من الأعلى صعوداً إلى الأقل
             const sortedTokens = Object.values(activeTokens).sort((a, b) => b.change - a.change);
             
             if (sortedTokens.length === 0) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #848e9c; padding: 40px;">
-                    🔍 يمسح السوق الآن.. في انتظار التقاط موجة سيولة سريعة تطابق الشروط...
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #848e9c; padding: 30px;">
+                    🔍 الرادار يمسح الصفقات الحية.. بانتظار تطابق الشروط الخفيفة لعرض العملات...
                 </div>`;
                 return;
             }
@@ -229,14 +225,14 @@
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">السعر الحالي:</span>
-                        <span class="stat-value">${token.price.toFixed(6)} $</span>
+                        <span class="stat-value">${token.price < 0.01 ? token.price.toFixed(6) : token.price.toFixed(4)} $</span>
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">الارتفاع اللحظي:</span>
                         <span class="stat-value price-up">${token.change.toFixed(2)}%+</span>
                     </div>
                     <div class="stat-row">
-                        <span class="stat-label">حجم السيولة (Volume):</span>
+                        <span class="stat-label">حجم التداول اليومي:</span>
                         <span class="stat-value" style="color: #fff;">$${token.volume.toLocaleString(undefined, {maximumFractionDigits: 0})}</span>
                     </div>
                     <a href="https://www.binance.com/ar/trade/${token.symbol}_USDT" target="_blank" class="trade-btn">انتقل للتداول فوراً</a>
@@ -246,7 +242,7 @@
         }
 
         ws.onclose = () => {
-            statusDiv.innerHTML = "🔴 انقطع الاتصال بالبث الفوري.. جاري محاولة إعادة الربط التلقائي...";
+            statusDiv.innerHTML = "🔴 انقطع البث.. جاري إعادة الاتصال التلقائي بالخادم...";
             statusDiv.style.color = "#f6465d";
         };
     </script>
